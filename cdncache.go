@@ -17,10 +17,14 @@ type cdn struct {
 
 var CACHE_DIR = os.Getenv("CDN_CACHE_DIR")
 
-func init() {
+func setCacheDir() {
 	if CACHE_DIR == "" {
 		CACHE_DIR = filepath.Join("tmp", "cdn_cache")
 	}
+}
+
+func init() {
+	setCacheDir()
 }
 
 // CDN returns a function that may be used to return either the cdnUrl

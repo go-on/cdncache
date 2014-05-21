@@ -1,0 +1,9 @@
+{
+  "Exports": {
+    "CACHE_DIR": "os.Getenv(\"CDN_CACHE_DIR\")",
+    "CDN": "func (string) (string) string",
+    "init": "bb5e77b3649b16eaa314704d8699de7b"
+  },
+  "Imports": {},
+  "Path": "github.com/go-on/cdncache"
+}
