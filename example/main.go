@@ -3,12 +3,10 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/go-on/bootstrap/bs3"
 	"github.com/go-on/cdncache"
-	. "github.com/go-on/html"
-	. "github.com/go-on/html/attr"
-	. "github.com/go-on/html/h"
-	. "github.com/go-on/html/tag"
+	. "github.com/go-on/lib/html"
+	"github.com/go-on/lib/internal/bootstrap/bs3"
+	. "github.com/go-on/lib/internal/shared"
 	"net/http"
 )
 
@@ -23,7 +21,7 @@ func main() {
 
 	http.Handle("/",
 		HTML5(
-			A_Lang("en"),
+			Lang_("en"),
 			HEAD(
 				CharsetUtf8(),
 				HttpEquiv("X-UA-Compatible", "IE=edge"),
@@ -32,7 +30,7 @@ func main() {
 				CssHref(cdn(bs3.CDN_3_1_1_min)),
 				CssHref(cdn(bs3.CDN_3_1_1_theme_min)),
 				CssHref(cdn("http://getbootstrap.com/examples/starter-template/starter-template.css")),
-				Htmlf(`
+				HTMLString(fmt.Sprintf(`
 <!--[if lt IE 9]>
   <script src="%s"></script>
   <script src="%s"></script>
@@ -41,15 +39,16 @@ func main() {
 					cdn("https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"),
 					cdn("https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"),
 				),
+				),
 			),
 			BODY(
 				DIV(bs3.Navbar, bs3.Navbar_inverse, bs3.Navbar_fixed_top,
-					Attr("role", "navigation"),
+					Attrs_("role", "navigation"),
 					DIV(bs3.Container,
 						DIV(bs3.Navbar_header,
 							BUTTON(bs3.Navbar_toggle,
-								A_Type("button"),
-								Attrs("data-toggle", "collapse", "data-target", ".navbar-collapse"),
+								Type_("button"),
+								Attrs_("data-toggle", "collapse", "data-target", ".navbar-collapse"),
 								SPAN(bs3.Sr_only, "Toogle navigation"),
 								SPAN(bs3.Icon_bar),
 								SPAN(bs3.Icon_bar),
