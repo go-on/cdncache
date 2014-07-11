@@ -54,6 +54,24 @@ func CDN(mountPoint string) func(cdnUrl string) string {
 	return c.path
 }
 
+type Muxer interface {
+	Handle(mountpoint string, h http.Handler)
+}
+
+func MuxCDN(m Muxer, mountPoint string) func(cdnUrl string) string {
+	if mountPoint != "" {
+		if mountPoint[0] != '/' || mountPoint[len(mountPoint)-1] != '/' {
+			panic(`mountpoint must start and end with "/"`)
+		}
+		m.Handle(mountPoint, http.StripPrefix(mountPoint, http.FileServer(http.Dir(CACHE_DIR))))
+	}
+	c := &cdn{
+		cached:     map[string]struct{}{},
+		mountPoint: mountPoint,
+	}
+	return c.path
+}
+
 // getFile gets the file at cdnUrl and saves it in the CACHE_DIR
 func (c *cdn) getFile(cdnUrl string, parsedUrl *url.URL) error {
 	file := filepath.Join(CACHE_DIR, parsedUrl.Host, parsedUrl.Path)
