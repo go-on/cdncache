@@ -2,7 +2,7 @@ package cdncache
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"os"
@@ -93,12 +93,15 @@ func (c *cdn) getFile(cdnUrl string, parsedUrl *url.URL) error {
 	if errGet != nil {
 		return errGet
 	}
-	b, errRead := ioutil.ReadAll(resp.Body)
-	if errRead != nil {
-		return errRead
+
+	f, errCreate := os.Create(file)
+	if errCreate != nil {
+		return errCreate
 	}
 
-	return ioutil.WriteFile(file, b, 0644)
+	defer f.Close()
+	_, err = io.Copy(f, resp.Body)
+	return err
 }
 
 // path returns either cdnUrl (no caching) or a corresponding local url
