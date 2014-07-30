@@ -3,11 +3,12 @@ package main
 import (
 	"flag"
 	"fmt"
+	"net/http"
+
 	"github.com/go-on/cdncache"
 	. "github.com/go-on/lib/html"
 	"github.com/go-on/lib/internal/bootstrap/bs3"
 	. "github.com/go-on/lib/internal/shared"
-	"net/http"
 )
 
 var (
@@ -81,6 +82,6 @@ func main() {
 			),
 		),
 	)
-
+	fmt.Printf("listening on localhost: %d\n", *port)
 	http.ListenAndServe(fmt.Sprintf(":%d", *port), nil)
 }
