@@ -5,10 +5,11 @@ import (
 	"fmt"
 	"net/http"
 
-	"gopkg.in/go-on/cdncache.v1"
+	. "github.com/go-on/lib/types"
+
 	. "github.com/go-on/lib/html"
 	"github.com/go-on/lib/internal/bootstrap/bs3"
-	. "github.com/go-on/lib/internal/shared"
+	"gopkg.in/go-on/cdncache.v1"
 )
 
 var (
