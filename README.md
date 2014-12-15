@@ -1,6 +1,8 @@
 cdncache
 ========
 
+[![GoDoc](https://godoc.org/github.com/go-on/cdncache?status.png)](http://godoc.org/github.com/go-on/cdncache)
+
 a cache for CDN files
 
 Example
@@ -12,7 +14,7 @@ package main
 
 import (
     "fmt"
-    "github.com/go-on/cdncache"
+    "gopkg.in/go-on/cdncache.v1"
     "net/http"
 )
 
