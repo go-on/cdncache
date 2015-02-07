@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"net/http"
 
-	. "gopkg.in/go-on/lib.v2/types"
+	. "gopkg.in/go-on/lib.v3/types"
 
-	. "gopkg.in/go-on/lib.v2/html"
-	"gopkg.in/go-on/lib.v2/internal/bootstrap/bs3"
+	. "gopkg.in/go-on/lib.v3/html"
+	"gopkg.in/go-on/lib.v3/internal/bootstrap/bs3"
 	"gopkg.in/go-on/cdncache.v1"
 )
 
